@@ -1,0 +1,5 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement style="flex-grow: 1; align-items: center; justify-content: center;">
+        <ui:Label text="You Win!!!" style="-unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Fonts/Knewave-Regular.ttf?fileID=12800000&amp;guid=08b6244c87bd7aec991c9eb07a4070d3&amp;type=3#Knewave-Regular&quot;); font-size: 350%; color: rgb(40, 255, 0); -unity-font-style: normal;"/>
+    </ui:VisualElement>
+</ui:UXML>

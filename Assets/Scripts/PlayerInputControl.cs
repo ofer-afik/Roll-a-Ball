@@ -56,6 +56,10 @@ public class PlayerInputControl : MonoBehaviour
             {
                 StartCoroutine(GameManagerController.Instance.SceneTransStart(GameManagerController.Instance.levels[GameManagerController.Instance.curLevIndex].levelName));
             }
+            else
+            {
+                StartCoroutine(GameManagerController.Instance.SceneTransStart("GameWin"));
+            }
         }
     }
 
