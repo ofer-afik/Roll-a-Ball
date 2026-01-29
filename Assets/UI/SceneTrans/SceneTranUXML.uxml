@@ -1,0 +1,8 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/UniversalUSS.uss?fileID=7433441132597879392&amp;guid=a70a5de44d4962978ab7ae37d882e11e&amp;type=3#UniversalUSS"/>
+    <ui:VisualElement name="CircleTran" data-source="project://database/Assets/UI/SceneTrans/SceneTransData.asset?fileID=11400000&amp;guid=149300aa5695e02388a26617bf8f0425&amp;type=2#SceneTransData" data-source-path="Scale" style="flex-grow: 1; background-color: rgba(0, 152, 255, 0); aspect-ratio: 1; background-image: url(&quot;project://database/Assets/circle.png?fileID=2800000&amp;guid=52d717a2339e93a50b1e6562b940a806&amp;type=3#circle&quot;); background-size: cover; align-self: center; justify-content: center; align-items: center;">
+        <Bindings>
+            <ui:DataBinding property="style.scale" data-source-path="value" binding-mode="ToTarget"/>
+        </Bindings>
+    </ui:VisualElement>
+</ui:UXML>
