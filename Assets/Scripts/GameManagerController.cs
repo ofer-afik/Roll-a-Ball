@@ -13,7 +13,9 @@ public class GameManagerController : MonoBehaviour
     // Levels data
     public Level[] levels = new Level[]
     {
-        new Level("Level1", -5f, 15f, false),
+        new Level("Level1", -5f, 10f),
+        new Level("Level2", -5f, 15f),
+        new Level("Level3", -15, 20)
     };
 
     // Game-wide variables
@@ -92,15 +94,13 @@ public class GameManagerController : MonoBehaviour
 
 public class Level
 {
-    public bool isComplete { get; set; }
     public string levelName { get; private set; }
     public float upperBound { get; private set; }
     public float lowerBound { get; private set; }
-    public Level(string name, float lower, float upper, bool complete)
+    public Level(string name, float lower, float upper)
     {
         levelName = name;
         lowerBound = lower;
         upperBound = upper;
-        isComplete = complete;
     }
 }

@@ -40,8 +40,6 @@ public class PlayerInputControl : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         meshRenderer = GetComponent<MeshRenderer>();
         col = GetComponent<SphereCollider>();
-
-        GameManagerController.Instance.levels[GameManagerController.Instance.curLevIndex].isComplete = false;
     }
 
     void OnCollisionEnter(Collision collision)
@@ -50,7 +48,6 @@ public class PlayerInputControl : MonoBehaviour
         {
             Physics.gravity = new Vector3(0, -(Math.Abs(Physics.gravity.y)), 0);
             GameManagerController.Instance.curScene = SceneManager.GetSceneByName("SelectLevelScene");
-            GameManagerController.Instance.levels[GameManagerController.Instance.curLevIndex].isComplete = true;
             GameManagerController.Instance.curLevIndex++;
             if (GameManagerController.Instance.curLevIndex < GameManagerController.Instance.levels.Length)
             {
@@ -61,6 +58,11 @@ public class PlayerInputControl : MonoBehaviour
                 StartCoroutine(GameManagerController.Instance.SceneTransStart("GameWin"));
             }
         }
+        else if (collision.gameObject.CompareTag("KillZone"))
+        {
+            isDead = true;
+            StartCoroutine(Death());
+        }
     }
 
     void Update()
@@ -69,13 +71,6 @@ public class PlayerInputControl : MonoBehaviour
         if (isDead) return;
         if (transform.position.y < GameManagerController.Instance.levels[GameManagerController.Instance.curLevIndex].lowerBound || transform.position.y > GameManagerController.Instance.levels[GameManagerController.Instance.curLevIndex].upperBound)
         {
-            if (Physics.gravity.y < 0)
-            {
-                instantiatedDieParticles = Instantiate(dieParticlesPrefab, transform.position, Quaternion.Euler(0, 0, 0));
-            }
-            else {
-                instantiatedDieParticles = Instantiate(dieParticlesPrefab, transform.position, Quaternion.Euler(0, 0, 180));
-            }
             isDead = true;
             StartCoroutine(Death());
         }
@@ -90,9 +85,19 @@ public class PlayerInputControl : MonoBehaviour
     }
 
     IEnumerator Death()
-    {
+    {       
+        if (Physics.gravity.y < 0)
+        {
+            instantiatedDieParticles = Instantiate(dieParticlesPrefab, transform.position, Quaternion.Euler(0, 0, 0));
+        }
+        else
+        {
+            instantiatedDieParticles = Instantiate(dieParticlesPrefab, transform.position, Quaternion.Euler(0, 0, 180));
+        }
+        
         meshRenderer.enabled = false;
         col.enabled = false;
+        rb.isKinematic = true;
         yield return new WaitForSeconds(2f);
         Destroy(instantiatedDieParticles);
         Physics.gravity = new Vector3(0, -(Math.Abs(Physics.gravity.y)), 0);
